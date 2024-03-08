@@ -1,0 +1,15 @@
+version: '3'
+services:
+  webapp:
+    build: 
+      context: .
+      dockerfile: ./custom.dockerfile
+    container_name: Project_Demo
+    ports:
+      - "8080:8080"
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge

@@ -1,0 +1,28 @@
+version: '3'
+services:
+  mysql: 
+    image: mysql:8.0
+    container_name: Project_4_New
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=Project_4
+    ports:
+      - "6446:3306"
+    # networks:
+    #   - mynetwork
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+  webapp:
+    build: 
+      context: .
+    container_name: Project_4_Back
+    ports:
+      - "8080:8080"
+    networks:
+      - mynetwork
+    depends_on:
+      - mysql
+networks:
+  mynetwork:
+    driver: bridge
+    
